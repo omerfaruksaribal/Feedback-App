@@ -9,12 +9,14 @@ function Button({ children, version, type, isDisabled }) {
 )
 }
 
+// defaultProps provides, default input, if inputs are empty then defaulProps fills the empty parts 
 Button.defaultProps = {
     version: 'primary',
     type: 'button',
     isDisabled: false
 }
 
+// propTypes provides the requirement for inputs
 Button.propTypes = {
     children: PropTypes.node.isRequired,
     version: PropTypes.string,

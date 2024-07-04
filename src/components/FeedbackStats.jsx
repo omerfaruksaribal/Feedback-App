@@ -2,7 +2,7 @@ import React from 'react'
 import { useContext } from 'react'
 import FeedbackContext from '../context/FeedbackContext'
 
-
+// Shows the average rating of feedbacks. Also, shows how many feedback there are
 function FeedbackStats() {    
     const {feedback} = useContext(FeedbackContext)
 

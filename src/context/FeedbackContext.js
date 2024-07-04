@@ -16,6 +16,7 @@ export const FeedbackProvider = ({children}) => {
         localStorage.setItem('feedback', JSON.stringify(feedback))
     }, [feedback])
 
+    // setFeedbackEditBool is a function to check is edit true or false and changes the feedbackEditBool true or false.
     const [feedbackEditBool, setfeedbackEditBool] = useState({
         item: {},
         edit: false,
@@ -32,6 +33,7 @@ export const FeedbackProvider = ({children}) => {
         setFeedback(feedback.map((item) => item.id === id ? {...item, ...updatedItem} : item))
     }
 
+    // uuidv4() generates random ids
     const addFeedback = (newFeedback) => {
         newFeedback.id = uuidv4()
         setFeedback([newFeedback, ...feedback])

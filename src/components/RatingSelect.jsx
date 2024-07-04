@@ -13,6 +13,7 @@ function RatingSelect({select}) {
 
     }, [feedbackEditBool])
 
+    // If we write e.currentTarget.value instead of +e.currentTarget.value, than system takes previous rating.
     const handleChange = (e) => {
         setSelected(+e.currentTarget.value)
         select(+e.currentTarget.value)
