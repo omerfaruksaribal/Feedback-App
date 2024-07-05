@@ -16,29 +16,9 @@
       "text": "This text is test 3"
     },
     {
-      "rating": 7,
-      "text": "This is a test feedback",
-      "id": 6
-    },
-    {
-      "rating": 10,
-      "text": "This is a test feedback 1",
-      "id": 7
-    },
-    {
-      "rating": 7,
-      "text": "This is a test feedback 2",
-      "id": 8
-    },
-    {
-      "rating": 1,
-      "text": "This is a test feedback 3",
-      "id": 9
-    },
-    {
-      "rating": 7,
-      "text": "This is a test feedback 4",
-      "id": 10
+      "text": "This is a test 4",
+      "rating": 4,
+      "id": 4
     }
   ]
 }
