@@ -1,6 +1,6 @@
 # To install the json-server
 
-npm i json-server
+npm i json-server@0.17.1
 
 # There are some settings in package.json
 
