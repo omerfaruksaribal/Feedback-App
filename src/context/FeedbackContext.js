@@ -3,24 +3,30 @@ import { v4 as uuidv4 } from 'uuid'
 
 const FeedbackContext = createContext()
 
-// This part is for localstorage
-const getFeedbackFromLocalStorage = () => {
-    const data = localStorage.getItem('feedback')
-    return data ? JSON.parse(data) : []
-}
-
 export const FeedbackProvider = ({children}) => {
-    // This part is for localstorage
-    const[feedback, setFeedback] = useState(getFeedbackFromLocalStorage())
-    useEffect(() => {
-        localStorage.setItem('feedback', JSON.stringify(feedback))
-    }, [feedback])
-
+    const[isLoading, setIsLoading] = useState(true)
+    const[feedback, setFeedback] = useState([])
     // setFeedbackEditBool is a function to check is edit true or false and changes the feedbackEditBool true or false.
     const [feedbackEditBool, setfeedbackEditBool] = useState({
         item: {},
         edit: false,
     })
+
+    useEffect(() => {
+        fetchFeedback()
+    }, [])
+
+    // Fetch feedback
+    const fetchFeedback = async () => {
+        const response = await fetch(`http://localhost:5001/feedback?_sort=id&_order=desc`)
+        const data = await response.json()
+        const parsedData = data.map(item => ({
+            ...item,
+            rating: parseInt(item.rating, 10)
+        }))
+        setFeedback(parsedData)
+        setIsLoading(false)
+    }
 
     const deleteFeedback = (id) => {
         if (window.confirm('Are you sure you want to delete?')) {
@@ -36,6 +42,7 @@ export const FeedbackProvider = ({children}) => {
     // uuidv4() generates random ids
     const addFeedback = (newFeedback) => {
         newFeedback.id = uuidv4()
+        newFeedback.rating = parseInt(newFeedback.rating, 10)
         setFeedback([newFeedback, ...feedback])
     }
 
@@ -49,6 +56,7 @@ export const FeedbackProvider = ({children}) => {
     return <FeedbackContext.Provider value={{
         feedback,
         feedbackEditBool,
+        isLoading,
         deleteFeedback,
         addFeedback,
         editFeedback,

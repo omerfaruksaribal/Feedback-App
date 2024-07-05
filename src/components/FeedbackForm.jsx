@@ -61,7 +61,7 @@ function FeedbackForm() {
         if (text.trim().length > 10 ) {
             const newFeedback = {
                 text: text,
-                rating: rating,
+                rating: Number(rating),
             }
 
             if (feedbackEditBool.edit) {
